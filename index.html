@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dialogue citoyen – Secteur Soupetard | 22 juin 2026</title>
+  <meta name="description" content="Participez à la présentation du projet d'aménagement du secteur Soupetard, le lundi 22 juin 2026 à 18h. Organisé par Kaufman & Broad et CDC Habitat, avec l'appui d'Empreintes Citoyennes." />
+  <meta property="og:title" content="Dialogue citoyen – Secteur Soupetard" />
+  <meta property="og:description" content="Rencontre publique sur site, lundi 22 juin 2026 à 18h. Venez découvrir le projet, poser vos questions et contribuer." />
+  <meta property="og:type" content="website" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'ec-bleu':       '#1565C0',
+            'ec-bleu-dark':  '#0D3F82',
+            'ec-bleu-mid':   '#1976D2',
+            'ec-bleu-light': '#E3F0FB',
+            'ec-vert':       '#2E9E62',
+            'ec-vert-dark':  '#1E6E44',
+            'ec-vert-light': '#E5F7EE',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .hero-bg {
+      background: linear-gradient(150deg, #0D3F82 0%, #1565C0 55%, #1A7A44 100%);
+    }
+
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(21, 101, 192, 0.15);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #1565C0 0%, #2E9E62 100%);
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .btn-submit:hover  { opacity: 0.9; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .input-field {
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: #1565C0;
+      box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.15);
+    }
+
+    input[type="checkbox"] { accent-color: #1565C0; }
+
+    /* Fallback logo quand l'image ne charge pas */
+    .logo-fallback { display: none; }
+    img.logo-img[data-error="1"] { display: none; }
+    img.logo-img[data-error="1"] + .logo-fallback { display: inline-flex; }
+  </style>
+</head>
+
+<body class="font-sans antialiased bg-white text-gray-800">
+
+<!-- ================================================================
+     HEADER : Logos partenaires
+================================================================ -->
+<header class="bg-white border-b border-gray-100 shadow-sm py-5 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5">
+
+    <!-- Logos -->
+    <div class="flex items-center gap-8 flex-wrap justify-center">
+
+      <!-- Kaufman & Broad : déposer logos/kaufman-broad.png -->
+      <span class="flex items-center gap-2">
+        <img src="logos/kaufman-broad.png" alt="Kaufman &amp; Broad"
+             class="logo-img h-10 object-contain"
+             onerror="this.dataset.error='1'" />
+        <span class="logo-fallback border border-gray-200 rounded px-3 py-1.5 text-sm font-semibold text-gray-500">
+          Kaufman &amp; Broad
+        </span>
+      </span>
+
+      <!-- CDC Habitat : déposer logos/cdc-habitat.png -->
+      <span class="flex items-center gap-2">
+        <img src="logos/cdc-habitat.png" alt="CDC Habitat"
+             class="logo-img h-10 object-contain"
+             onerror="this.dataset.error='1'" />
+        <span class="logo-fallback border border-gray-200 rounded px-3 py-1.5 text-sm font-semibold text-gray-500">
+          CDC Habitat
+        </span>
+      </span>
+
+      <!-- Empreintes Citoyennes -->
+      <img src="logos/empreintes-citoyennes.png" alt="Empreintes Citoyennes"
+           class="h-16 object-contain" />
+
+    </div>
+
+    <!-- Mention tiers de confiance -->
+    <div class="text-right text-xs text-gray-500 hidden sm:block max-w-xs leading-relaxed">
+      <span class="text-ec-vert font-semibold block">Association d'intérêt général</span>
+      Tiers de confiance des relations et du dialogue citoyens
+    </div>
+
+  </div>
+</header>
+
+
+<!-- ================================================================
+     HERO
+================================================================ -->
+<section class="hero-bg text-white py-20 sm:py-28 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+
+    <!-- Badge date -->
+    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-5 py-2 text-sm font-semibold mb-8">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+      </svg>
+      Lundi 22 juin 2026 — 18h00
+    </div>
+
+    <!-- Titre principal -->
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-5">
+      Dialogue citoyen<br/>
+      <span class="text-green-300">Secteur Soupetard</span>
+    </h1>
+
+    <p class="text-xl sm:text-2xl font-medium text-blue-100 mb-4">
+      Présentation du projet d'aménagement sur site
+    </p>
+
+    <p class="text-base text-blue-200 max-w-2xl mx-auto mb-6">
+      Kaufman &amp; Broad et CDC Habitat invitent les habitants, riverains et acteurs du quartier
+      à découvrir le projet, poser leurs questions et contribuer à identifier les sujets importants pour la suite.
+    </p>
+
+    <!-- Lieu -->
+    <div class="inline-flex items-center gap-2 bg-white/15 rounded-xl px-5 py-3 text-sm mb-10">
+      <svg class="w-4 h-4 text-green-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+      <!-- TODO: Remplacer par l'adresse précise du point de rendez-vous -->
+      <span class="text-blue-100">Secteur Soupetard — <em>adresse précise à confirmer</em></span>
+    </div>
+
+    <!-- CTA -->
+    <div>
+      <a href="#inscription"
+        class="inline-block bg-white text-ec-bleu-dark font-bold text-base sm:text-lg px-10 py-4 rounded-xl shadow-lg hover:bg-blue-50 transition">
+        Je m'inscris à la rencontre →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     POURQUOI PARTICIPER
+================================================================ -->
+<section class="bg-ec-bleu-light py-16 px-6">
+  <div class="max-w-4xl mx-auto">
+
+    <h2 class="text-2xl sm:text-3xl font-bold text-ec-bleu-dark text-center mb-4">
+      Pourquoi participer ?
+    </h2>
+    <p class="text-center text-gray-600 max-w-3xl mx-auto mb-4">
+      Un projet urbain se comprend mieux lorsqu'il est présenté dans son environnement réel.
+      Cette rencontre sur site permettra de découvrir les lieux concernés, de mieux comprendre
+      les grandes intentions du projet et d'échanger sur son insertion dans le quartier.
+    </p>
+    <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10">
+      L'objectif est de présenter le projet de manière concrète, depuis le terrain, afin de mieux
+      percevoir son évolution, ses liens avec l'environnement existant et les principaux sujets
+      d'attention pour la suite.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+      <div class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+        <div class="w-7 h-7 rounded-full bg-ec-bleu/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4 text-ec-bleu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <span class="text-sm text-gray-700">Présenter les grandes intentions du projet</span>
+      </div>
+      <div class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+        <div class="w-7 h-7 rounded-full bg-ec-bleu/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4 text-ec-bleu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <span class="text-sm text-gray-700">Expliquer les principes et intentions d'aménagement</span>
+      </div>
+      <div class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+        <div class="w-7 h-7 rounded-full bg-ec-vert/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4 text-ec-vert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <span class="text-sm text-gray-700">Répondre aux questions des habitants, riverains et acteurs du quartier</span>
+      </div>
+      <div class="flex items-start gap-3 bg-white rounded-xl p-4 shadow-sm">
+        <div class="w-7 h-7 rounded-full bg-ec-vert/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4 text-ec-vert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <span class="text-sm text-gray-700">Recueillir les remarques et points d'attention utiles pour la suite</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     LES 3 THÈMES
+================================================================ -->
+<section class="bg-white py-16 px-6">
+  <div class="max-w-4xl mx-auto">
+
+    <h2 class="text-2xl sm:text-3xl font-bold text-ec-bleu-dark text-center mb-2">
+      Trois thématiques au programme
+    </h2>
+    <p class="text-center text-gray-500 mb-10">Un parcours concret pour comprendre et questionner le projet</p>
+
+    <div class="grid sm:grid-cols-3 gap-6">
+
+      <div class="card-hover bg-white border border-gray-100 rounded-2xl p-6 shadow-sm"
+           style="border-top: 4px solid #1565C0">
+        <div class="w-12 h-12 rounded-xl bg-ec-bleu-light flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-ec-bleu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-widest text-ec-bleu mb-2">Thème 1</div>
+        <h3 class="font-bold text-gray-800 mb-3 leading-snug">Le site aujourd'hui et son évolution</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          État actuel du site, son occupation, sa topographie, ses contraintes et les raisons de sa transformation.
+        </p>
+      </div>
+
+      <div class="card-hover bg-white border border-gray-100 rounded-2xl p-6 shadow-sm"
+           style="border-top: 4px solid #2E9E62">
+        <div class="w-12 h-12 rounded-xl bg-ec-vert-light flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-ec-vert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-widest text-ec-vert mb-2">Thème 2</div>
+        <h3 class="font-bold text-gray-800 mb-3 leading-snug">Les intentions d'aménagement et l'insertion urbaine</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Programmation, formes urbaines, organisation générale, hauteurs, vues, distances et relations avec le tissu existant.
+        </p>
+      </div>
+
+      <div class="card-hover bg-white border border-gray-100 rounded-2xl p-6 shadow-sm"
+           style="border-top: 4px solid #1565C0">
+        <div class="w-12 h-12 rounded-xl bg-ec-bleu-light flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-ec-bleu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold uppercase tracking-widest text-ec-bleu mb-2">Thème 3</div>
+        <h3 class="font-bold text-gray-800 mb-3 leading-snug">Le cadre de vie, les usages et les accès</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Accès, circulations, stationnement, cheminements, espaces végétalisés, principes paysagers et usages futurs.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     RÔLE D'EMPREINTES CITOYENNES
+================================================================ -->
+<section class="bg-ec-vert-light py-16 px-6 border-y border-ec-vert/20">
+  <div class="max-w-3xl mx-auto text-center">
+
+    <div class="w-14 h-14 rounded-full bg-ec-vert/15 flex items-center justify-center mx-auto mb-5">
+      <svg class="w-7 h-7 text-ec-vert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+      </svg>
+    </div>
+
+    <div class="text-xs font-bold uppercase tracking-widest text-ec-vert mb-2">
+      Un temps d'information et d'écoute
+    </div>
+    <h2 class="text-2xl sm:text-3xl font-bold text-ec-vert-dark mb-6">
+      Le rôle d'Empreintes Citoyennes
+    </h2>
+
+    <p class="text-gray-700 leading-relaxed mb-4">
+      Empreintes Citoyennes accompagne ce temps de dialogue en qualité de <strong>tiers de confiance</strong>.
+      Son rôle est de faciliter les échanges, de permettre l'expression des questions et remarques,
+      et de veiller à ce que les contributions soient recueillies de manière claire et utile.
+    </p>
+    <p class="text-gray-700 leading-relaxed mb-4">
+      La démarche vise à favoriser un dialogue responsable entre les porteurs du projet, les habitants,
+      les riverains et les acteurs du quartier.
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      Les remarques formulées par les participants seront recueillies, analysées et partagées
+      afin de nourrir les prochaines étapes de la démarche.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FORMULAIRE D'INSCRIPTION
+================================================================ -->
+<section id="inscription" class="bg-white py-16 px-6">
+  <div class="max-w-lg mx-auto">
+
+    <div class="text-center mb-10">
+      <div class="text-xs font-bold uppercase tracking-widest text-ec-bleu mb-2">Inscription gratuite</div>
+      <h2 class="text-2xl sm:text-3xl font-bold text-ec-bleu-dark mb-3">
+        Je participe à la rencontre
+      </h2>
+      <p class="text-gray-500 text-sm leading-relaxed">
+        Lundi 22 juin 2026 à 18h — Secteur Soupetard<br/>
+        Entrée libre &middot; Inscription souhaitée pour organiser l'accueil
+      </p>
+    </div>
+
+    <!-- FORMULAIRE -->
+    <form id="form-inscription" novalidate class="space-y-5">
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label for="prenom" class="block text-sm font-semibold text-gray-700 mb-1.5">
+            Prénom <span class="text-red-500">*</span>
+          </label>
+          <input id="prenom" type="text" name="prenom" required placeholder="Votre prénom"
+            class="input-field w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800" />
+        </div>
+        <div>
+          <label for="nom" class="block text-sm font-semibold text-gray-700 mb-1.5">
+            Nom <span class="text-red-500">*</span>
+          </label>
+          <input id="nom" type="text" name="nom" required placeholder="Votre nom"
+            class="input-field w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800" />
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">
+          Adresse e-mail <span class="text-red-500">*</span>
+        </label>
+        <input id="email" type="email" name="email" required placeholder="votre@email.fr"
+          class="input-field w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800" />
+      </div>
+
+      <div>
+        <label for="telephone" class="block text-sm font-semibold text-gray-700 mb-1.5">
+          Téléphone <span class="text-gray-400 font-normal">(optionnel)</span>
+        </label>
+        <input id="telephone" type="tel" name="telephone" placeholder="06 00 00 00 00"
+          class="input-field w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800" />
+      </div>
+
+      <!-- Consentements RGPD -->
+      <div class="bg-gray-50 rounded-xl p-5 space-y-4 border border-gray-200">
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Consentements</p>
+
+        <label class="flex items-start gap-3 cursor-pointer group">
+          <input id="consent_rappel" type="checkbox" name="consent_rappel" required
+            class="mt-1 w-5 h-5 flex-shrink-0 cursor-pointer rounded" />
+          <span class="text-sm text-gray-700 leading-relaxed">
+            J'accepte que mes coordonnées soient conservées par Empreintes Citoyennes
+            pour être recontacté·e au sujet de cet événement.
+            <span class="text-red-500">*</span>
+          </span>
+        </label>
+
+        <label class="flex items-start gap-3 cursor-pointer group">
+          <input id="consent_suite" type="checkbox" name="consent_suite"
+            class="mt-1 w-5 h-5 flex-shrink-0 cursor-pointer rounded" />
+          <span class="text-sm text-gray-700 leading-relaxed">
+            Je souhaite être tenu·e informé·e des suites du projet Soupetard.
+            <span class="text-gray-400">(optionnel)</span>
+          </span>
+        </label>
+      </div>
+
+      <!-- Message d'erreur -->
+      <div id="form-error"
+        class="hidden bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700 leading-relaxed">
+      </div>
+
+      <!-- Bouton submit -->
+      <button id="btn-submit" type="submit"
+        class="btn-submit w-full py-4 rounded-xl text-white font-bold text-base shadow-md">
+        <span id="btn-label">Confirmer mon inscription</span>
+        <span id="btn-loading" class="hidden">Inscription en cours…</span>
+      </button>
+
+      <!-- Notice RGPD -->
+      <p class="text-xs text-gray-400 text-center leading-relaxed">
+        Vos données sont collectées par Empreintes Citoyennes dans le cadre de cet événement uniquement.
+        Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression.
+        Pour l'exercer&nbsp;:
+        <!-- TODO: Remplacer par le vrai email de contact Empreintes Citoyennes -->
+        <a href="mailto:contact@empreintes-citoyennes.fr"
+          class="underline hover:text-gray-600">contact@empreintes-citoyennes.fr</a>
+      </p>
+
+    </form>
+
+    <!-- Message de succès -->
+    <div id="form-success" class="hidden text-center py-10">
+      <div class="w-16 h-16 rounded-full bg-ec-vert/15 flex items-center justify-center mx-auto mb-4">
+        <svg class="w-8 h-8 text-ec-vert" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-ec-vert-dark mb-2">Inscription confirmée !</h3>
+      <p class="text-gray-600 leading-relaxed">
+        Merci, votre inscription a bien été enregistrée.<br/>
+        À lundi 22 juin à 18h, secteur Soupetard !
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer class="bg-ec-bleu-dark text-white py-10 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6 mb-6">
+      <img src="logos/empreintes-citoyennes.png" alt="Empreintes Citoyennes"
+           class="h-14 object-contain brightness-0 invert" />
+      <div class="text-sm text-blue-200 text-center sm:text-right leading-relaxed">
+        <div class="font-semibold text-white mb-1">Dialogue citoyen — Secteur Soupetard</div>
+        <div>Organisé par Kaufman &amp; Broad et CDC Habitat</div>
+        <div>Avec l'appui d'Empreintes Citoyennes</div>
+        <div class="mt-2">Lundi 22 juin 2026 · 18h00 · Secteur Soupetard</div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 pt-6 text-xs text-blue-300 text-center">
+      Site réalisé par Empreintes Citoyennes ·
+      <a href="mailto:contact@empreintes-citoyennes.fr"
+        class="underline hover:text-white">contact@empreintes-citoyennes.fr</a>
+      · Données personnelles protégées conformément au RGPD
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+  const SUPABASE_URL      = 'https://dyaiezuuxdfkjdfpilji.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR5YWllenV1eGRma2pkZnBpbGppIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MTU3MjAsImV4cCI6MjA4ODk5MTcyMH0.-88lzw9Z69hAYTlIzPGcsfpAoZojFMimXjV-tbbQtmA';
+  const db = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const form        = document.getElementById('form-inscription');
+  const formSuccess = document.getElementById('form-success');
+  const formError   = document.getElementById('form-error');
+  const btnSubmit   = document.getElementById('btn-submit');
+  const btnLabel    = document.getElementById('btn-label');
+  const btnLoading  = document.getElementById('btn-loading');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearError();
+
+    const prenom        = document.getElementById('prenom').value.trim();
+    const nom           = document.getElementById('nom').value.trim();
+    const email         = document.getElementById('email').value.trim();
+    const telephone     = document.getElementById('telephone').value.trim();
+    const consent_rappel = document.getElementById('consent_rappel').checked;
+    const consent_suite  = document.getElementById('consent_suite').checked;
+
+    if (!prenom || !nom || !email) {
+      return showError('Veuillez remplir tous les champs obligatoires (prénom, nom, e-mail).');
+    }
+    if (!isValidEmail(email)) {
+      return showError('Veuillez entrer une adresse e-mail valide.');
+    }
+    if (!consent_rappel) {
+      return showError('Le premier consentement est requis pour finaliser votre inscription.');
+    }
+
+    setLoading(true);
+    try {
+      const { error } = await db.from('inscriptions_soupetard').insert([{
+        prenom,
+        nom,
+        email,
+        telephone: telephone || null,
+        consent_rappel,
+        consent_suite,
+      }]);
+
+      if (error) {
+        if (error.code === '23505') {
+          showError('Cette adresse e-mail est déjà inscrite. Pour toute question : contact@empreintes-citoyennes.fr');
+        } else {
+          throw error;
+        }
+        return;
+      }
+
+      form.classList.add('hidden');
+      formSuccess.classList.remove('hidden');
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    } catch (err) {
+      console.error(err);
+      showError('Une erreur est survenue. Veuillez réessayer ou écrire à contact@empreintes-citoyennes.fr');
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  function showError(msg) {
+    formError.textContent = msg;
+    formError.classList.remove('hidden');
+    formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function clearError() {
+    formError.classList.add('hidden');
+    formError.textContent = '';
+  }
+
+  function setLoading(on) {
+    btnSubmit.disabled = on;
+    btnLabel.classList.toggle('hidden', on);
+    btnLoading.classList.toggle('hidden', !on);
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+</script>
+
+</body>
+</html>
